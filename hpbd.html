@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations on a Normal Day!</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: black;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s, color 0.5s;
+            color: black;
+            overflow: hidden;
+        }
+        h1 {
+            color: inherit;
+        }
+        .container {
+            margin-top: 50px;
+            display: none;
+        }
+        .cake {
+            font-size: 150px;
+            display: inline-block;
+            position: relative;
+            animation: shake 1s infinite alternate;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff1493;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            margin: 20px auto;
+        }
+        .light-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ffa500;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            border-radius: 50%;
+            animation: float 6s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-10vh); }
+        }
+        @keyframes shake {
+            0% { transform: rotate(-2deg); }
+            100% { transform: rotate(2deg); }
+        }
+    </style>
+</head>
+<body>
+    <audio id="bg-music" loop>
+        <source src="sinh nhat/sinhnhat.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <button class="light-btn" id="light-button" onclick="toggleLight()">Turn On Lights</button>
+    <div class="container" id="content">
+        <h1>🎉 Chúc PU sinh nhật vui vẻ 🎂</h1>
+        <p>Hai mươi tuổi đầu rồi, làm người lớn rồi bớt bùn lại nha pạn </p>
+        <div class="cake">🎂</div>
+        <button class="btn" onclick="showMessage()">Cờ lích vào đây</button>
+        <p id="message" style="display:none; font-size: 20px; color: #ff4500;"></p>
+    </div>
+    
+    <script>
+        function toggleLight() {
+            var body = document.body;
+            var content = document.getElementById("content");
+            var music = document.getElementById("bg-music");
+            var lightButton = document.getElementById("light-button");
+            
+            body.style.backgroundColor = '#ffe4e1';
+            body.style.color = 'black';
+            content.style.display = 'block';
+            createBalloons();
+            
+            music.play();
+            music.volume = 0.5; 
+            lightButton.style.display = 'none';
+        }
+        
+        function createBalloons() {
+            const colors = ["#ff4d4d", "#4da6ff", "#4dff4d", "#ffff4d", "#ff4dff", "#ffa64d", "#4dffff"];
+            for (let i = 0; i < 30; i++) {
+                let balloon = document.createElement("div");
+                balloon.className = "balloon";
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.left = Math.random() * 100 + "vw";
+                balloon.style.animationDuration = (Math.random() * 3 + 4) + "s";
+                document.body.appendChild(balloon);
+            }
+        }
+        
+        function showMessage() {
+            document.getElementById("message").style.display = "block";
+            document.getElementById("message").innerHTML = "🎉 Chúc bạn tuổi mới có thêm nhiều niềm vui, ít nỗi buồn 💐<br> 🌸Chúc pu sẽ có được những thứ mà mình muốn và sẽ có tuổi 20 tươi đẹp hơn!🌸" 
+             
+            
+        }
+    </script>
+</body>
+</html>
